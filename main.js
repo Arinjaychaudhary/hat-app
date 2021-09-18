@@ -1,5 +1,14 @@
-function preload(){
 
+noseX = 0;
+noseY = 0;
+rightWristx = 0;
+rightWristy = 0;
+leftWristx = 0;
+leftWristy = 0;
+
+function preload(){
+moustache = loadImage("https://i.postimg.cc/vmJSY6yc/moustache.png");
+bear = loadImage("https://i.postimg.cc/8Cdzxmvt/bear.png");
 }
 
 function setup(){
@@ -15,6 +24,9 @@ function setup(){
 
 function draw(){
  image(camera,0,0,400,400);
+  image(moustache,noseX-130,noseY-65,80,80);
+  image(bear,noseX-135,noseY-280,100,100);
+
 }
 
 function take_snapshot(){
@@ -29,12 +41,11 @@ function modelLoaded(){
 function gotPoses(results){
   if(results.length > 0)
   {
+    noseX = results[0].pose.nose.x;
+    noseY = results[0].pose.nose.y;
     console.log(results);
-    console.log("nose x: "+results[0].pose.nose.x);
-    console.log("nose y: "+results[0].pose.nose.y);
-    console.log("left wrist x: "+results[0].pose.leftWrist.x);
-    console.log("left wrist y: "+results[0].pose.leftWrist.y);
-    console.log("right wrist x: "+results[0].pose.rightWrist.x);
-    console.log("right wrist y: "+results[0].pose.rightWrist.y);
+    console.log("nose x: "+noseX);
+    console.log("nose y: "+noseY);
+    
   }
 }
